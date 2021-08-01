@@ -28,7 +28,12 @@ const reducer = (state = initialState, action) => {
 };
 
 const store = createStore(reducer);
+
+const subscriberSelector = () =>
+  console.log("--Subcriber---", store.getState());
+
+store.subscribe(subscriberSelector);
+
+store.dispatch(incrementAction);
 store.dispatch(incrementAction);
 store.dispatch(addAmountAction(7));
-
-console.log(store.getState());
