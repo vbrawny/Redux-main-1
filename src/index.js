@@ -7,30 +7,30 @@ import {
   bindActionCreators
 } from "redux";
 
-const makeLouder = (string) => string.toUpperCase();
+const initialState = { value: 0 };
 
-const repeatThreeTimes = (string) => string.repeat(3);
+const INCREMENT = "increment";
 
-const embolden = (stringVal) => stringVal.bold();
+const incrementAction = { type: INCREMENT };
 
-// //normal way of doing things
-// const makeLouderRepeatThreeTimesEmboldenTheNormalWay = embolden(
-//   repeatThreeTimes(makeLouder("hello"))
-// );
+const reducer = (state = initialState, actions) => {
+  return state;
+};
 
-// console.log(
-//   "--makeLouderRepeatThreeTimesEmboldenTheNormalWay--",
-//   makeLouderRepeatThreeTimesEmboldenTheNormalWay
-// );
+const store = createStore(reducer);
 
-//using compose Redux API
-const makeLouderRepeatThreeTimesEmboldenUsingComposeReduxWay = compose(
-  makeLouder,
-  repeatThreeTimes,
-  embolden
-);
+console.log(store);
 
-console.log(
-  "--makeLouderRepeatThreeTimesEmboldenUsingComposeReduxWay--",
-  makeLouderRepeatThreeTimesEmboldenUsingComposeReduxWay("hello")
-);
+/*
+Store have the below methods.
+dispatch
+getState
+replaceReducer
+subscribe
+Symbol
+*/
+
+//replace reducer takes the current reducer and swaps it with new reducer
+//dispatch will dispatch and action to a reducer like a notifier to the store
+//getState will get the current state inside a reducer
+//subscribe will subscribe to the values of a reducer.
