@@ -7,44 +7,39 @@ import {
   bindActionCreators
 } from "redux";
 
-const initialState = { value: 0 };
+const initialState = {
+  users: [
+    { id: 1, name: "Steve" },
+    { id: 2, name: "Eric" }
+  ],
+  tasks: [
+    { title: "File the TPS reports" },
+    { title: "Order more energy drinks" }
+  ]
+};
 
-// const INCREMENT = "counter/increment";
-const INCREMENT = "increment";
-const ADDAMOUNT = "addAmount";
+const ADD_USER = "ADD_USER";
+const ADD_TASK = "ADD_TASK";
 
-const incrementAction = () => ({ type: INCREMENT });
+const addUserAction = (user) => ({ type: ADD_USER, payload: user });
+const addTaskAction = (task) => ({ type: ADD_TASK, payload: task });
 
-const addAmountAction = (amount) => ({ type: ADDAMOUNT, payload: amount });
-
-const reducer = (state = initialState, action) => {
-  if (action.type === INCREMENT) {
-    return { ...state, value: state.value + 1 };
-  }
-  if (action.type === ADDAMOUNT) {
-    return { ...state, value: action.payload };
+const userReducer = (state = initialState.users, action) => {
+  if (action.type === ADD_USER) {
+    return [...state, action.payload];
   }
   return state;
 };
 
+const taskReducer = (state = initialState.tasks, action) => {
+  if (action.type === ADD_TASK) {
+    return [...state, action.payload];
+  }
+  return state;
+};
+
+const reducer = combineReducers({ users: userReducer, tasks: taskReducer });
+
 const store = createStore(reducer);
 
-const subscriberSelector = () =>
-  console.log("--Subcriber---", store.getState());
-
-store.subscribe(subscriberSelector);
-
-// store.dispatch(addAmountAction(7));
-// store.dispatch(incrementAction);
-// store.dispatch(incrementAction);
-
-//Another flavour of writing action creators
-
-const actions = bindActionCreators(
-  { incrementAction, addAmountAction },
-  store.dispatch
-);
-
-actions.addAmountAction(7);
-actions.incrementAction();
-actions.incrementAction();
+console.log(store.getState());
