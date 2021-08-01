@@ -7,39 +7,46 @@ import {
   bindActionCreators
 } from "redux";
 
-const initialState = {
-  users: [
-    { id: 1, name: "Steve" },
-    { id: 2, name: "Eric" }
-  ],
-  tasks: [
-    { title: "File the TPS reports" },
-    { title: "Order more energy drinks" }
-  ]
-};
+// ------------------combine reducers--- starts -------------------------//
+// const initialState = {
+//   users: [
+//     { id: 1, name: "Steve" },
+//     { id: 2, name: "Eric" }
+//   ],
+//   tasks: [
+//     { title: "File the TPS reports" },
+//     { title: "Order more energy drinks" }
+//   ]
+// };
 
-const ADD_USER = "ADD_USER";
-const ADD_TASK = "ADD_TASK";
+// const ADD_USER = "ADD_USER";
+// const ADD_TASK = "ADD_TASK";
 
-const addUserAction = (user) => ({ type: ADD_USER, payload: user });
-const addTaskAction = (task) => ({ type: ADD_TASK, payload: task });
+// const addUserAction = (user) => ({ type: ADD_USER, payload: user });
+// const addTaskAction = (task) => ({ type: ADD_TASK, payload: task });
 
-const userReducer = (state = initialState.users, action) => {
-  if (action.type === ADD_USER) {
-    return [...state, action.payload];
-  }
-  return state;
-};
+// const userReducer = (state = initialState.users, action) => {
+//   if (action.type === ADD_USER) {
+//     return [...state, action.payload];
+//   }
+//   return state;
+// };
 
-const taskReducer = (state = initialState.tasks, action) => {
-  if (action.type === ADD_TASK) {
-    return [...state, action.payload];
-  }
-  return state;
-};
+// const taskReducer = (state = initialState.tasks, action) => {
+//   if (action.type === ADD_TASK) {
+//     return [...state, action.payload];
+//   }
+//   return state;
+// };
 
-const reducer = combineReducers({ users: userReducer, tasks: taskReducer });
+// const reducer = combineReducers({ users: userReducer, tasks: taskReducer });
 
-const store = createStore(reducer);
+// const store = createStore(reducer);
 
-console.log(store.getState());
+// console.log(store.getState()); //{users:[],tasks:[]} these keys taken from combine reducers.
+
+// ------------------combine reducers--- ends -------------------------//
+
+// ------------------enhancers starts -------------------------//
+
+// ------------------enhancers ends -------------------------//
