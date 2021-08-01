@@ -13,7 +13,7 @@ const initialState = { value: 0 };
 const INCREMENT = "increment";
 const ADDAMOUNT = "addAmount";
 
-const incrementAction = { type: INCREMENT };
+const incrementAction = () => ({ type: INCREMENT });
 
 const addAmountAction = (amount) => ({ type: ADDAMOUNT, payload: amount });
 
@@ -28,7 +28,23 @@ const reducer = (state = initialState, action) => {
 };
 
 const store = createStore(reducer);
-store.dispatch(incrementAction);
-store.dispatch(addAmountAction(7));
 
-console.log(store.getState());
+const subscriberSelector = () =>
+  console.log("--Subcriber---", store.getState());
+
+store.subscribe(subscriberSelector);
+
+// store.dispatch(addAmountAction(7));
+// store.dispatch(incrementAction);
+// store.dispatch(incrementAction);
+
+//Another flavour of writing action creators
+
+const actions = bindActionCreators(
+  { incrementAction, addAmountAction },
+  store.dispatch
+);
+
+actions.addAmountAction(7);
+actions.incrementAction();
+actions.incrementAction();
