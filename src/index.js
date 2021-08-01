@@ -9,28 +9,19 @@ import {
 
 const initialState = { value: 0 };
 
+// const INCREMENT = "counter/increment";
 const INCREMENT = "increment";
 
 const incrementAction = { type: INCREMENT };
 
-const reducer = (state = initialState, actions) => {
+const reducer = (state = initialState, action) => {
+  if (action.type === INCREMENT) {
+    return { ...state, value: state.value + 1 };
+  }
   return state;
 };
 
 const store = createStore(reducer);
+store.dispatch(incrementAction);
 
-console.log(store);
-
-/*
-Store have the below methods.
-dispatch
-getState
-replaceReducer
-subscribe
-Symbol
-*/
-
-//replace reducer takes the current reducer and swaps it with new reducer
-//dispatch will dispatch and action to a reducer like a notifier to the store
-//getState will get the current state inside a reducer
-//subscribe will subscribe to the values of a reducer.
+console.log(store.getState());
